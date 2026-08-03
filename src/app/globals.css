@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #07140f;
+  --panel: #0c1c16;
+  --line: #1e3a2f;
+  --bone: #e8f0ea;
+  --mist: #9bb5a8;
+  --fog: #6d8a7c;
+  --jade: #3dd68c;
+  --jade-bright: #5ee9a4;
+  --warn: #e8a05c;
+  --background: var(--ink);
+  --foreground: var(--bone);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Soft mesh atmosphere — not a flat fill */
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(61, 214, 140, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(30, 80, 60, 0.35), transparent 50%),
+    linear-gradient(165deg, #07140f 0%, #0a1a14 45%, #061210 100%);
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(rgba(61, 214, 140, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61, 214, 140, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.8s ease-out both;
+}
+
+.animate-rise-delay {
+  animation: rise 0.8s ease-out 0.15s both;
+}
+
+.animate-rise-late {
+  animation: rise 0.8s ease-out 0.3s both;
+}
+
+.pulse-line {
+  animation: pulse-line 3s ease-in-out infinite;
+}
