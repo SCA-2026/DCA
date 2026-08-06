@@ -101,7 +101,7 @@ export function JoinCommunity() {
           </p>
           <div className="mt-9">
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-[#1a2230] px-7 py-3.5 text-sm font-semibold text-white transition hover:brightness-125"
             >
               Join our community

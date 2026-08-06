@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Reveal } from "@/components/Reveal";
 
 const COMPANY = [
-  { href: "#about", label: "About us" },
-  { href: "#contact", label: "Careers", hiring: true },
-  { href: "#potential", label: "Customers" },
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact", hiring: true },
 ] as const;
 
 export function SiteFooter() {
@@ -64,7 +65,7 @@ export function SiteFooter() {
       <div className="pointer-events-none absolute inset-0 bg-[#f0f0f0]" aria-hidden>
         <video
           ref={videoRef}
-          className="h-full w-full object-cover object-center"
+          className="footer-bg-video h-full w-full object-cover object-center"
           muted
           playsInline
           loop
@@ -76,14 +77,14 @@ export function SiteFooter() {
       </div>
 
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(247,244,252,0.9)] via-[rgba(247,244,252,0.35)] to-[rgba(247,244,252,0.15)]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(247,244,252,0.94)] via-[rgba(247,244,252,0.55)] to-[rgba(247,244,252,0.38)]"
         aria-hidden
       />
 
       <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-6xl flex-col justify-between px-6 py-16 md:px-10 md:py-20 lg:py-24">
         <div className="grid gap-14 md:grid-cols-[1.1fr_auto_1.5fr] md:items-start md:gap-20 lg:gap-28">
           <Reveal ease="out">
-            <a href="/" className="inline-flex w-fit items-center">
+            <Link href="/" className="inline-flex w-fit items-center">
               <Image
                 src="/decentrix-logo.png"
                 alt="Decentrix Africa"
@@ -92,7 +93,7 @@ export function SiteFooter() {
                 className="h-12 w-auto object-contain md:h-14"
                 style={{ width: "auto" }}
               />
-            </a>
+            </Link>
           </Reveal>
 
           <Reveal delay={1} ease="in">
@@ -103,7 +104,7 @@ export function SiteFooter() {
               <ul className="mt-6 space-y-4 md:mt-7 md:space-y-5">
                 {COMPANY.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="footer-link inline-flex flex-wrap items-center gap-2.5 text-base text-[var(--mist)]"
                     >
@@ -113,7 +114,7 @@ export function SiteFooter() {
                           We&apos;re hiring!
                         </span>
                       )}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

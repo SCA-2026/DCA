@@ -9,12 +9,12 @@ import { HeroBookingBar } from "@/components/HeroBookingBar";
 import { JoinCommunity } from "@/components/JoinCommunity";
 import { MarketingSolutions } from "@/components/MarketingSolutions";
 import { NetworkVisual } from "@/components/NetworkVisual";
+import { PageShell } from "@/components/PageShell";
 import { ParallaxLayer } from "@/components/ParallaxLayer";
 import { PartnerOrbit } from "@/components/PartnerOrbit";
 import { Reveal } from "@/components/Reveal";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { TeamSection } from "@/components/TeamSection";
+import Link from "next/link";
 
 const POTENTIAL = [
   {
@@ -117,11 +117,7 @@ const FEATURES = [
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="site-sheet relative z-10 flex flex-1 flex-col bg-[var(--ink)]">
-        <SiteHeader />
-
-        <main className="flex flex-1 flex-col">
+    <PageShell>
         <section className="hero-stage flow-haze relative flex min-h-dvh flex-col overflow-hidden px-6 pb-10 pt-28 md:px-10 md:pb-14">
           <ParallaxLayer speed={0.12} className="absolute inset-0">
             <div className="ken-burns" />
@@ -142,26 +138,27 @@ export default function Home() {
               <p className="animate-rise font-mono text-xs uppercase tracking-[0.25em] text-brand">
                 Decentrix Africa
               </p>
-              <h1 className="animate-rise-delay text-brand mt-4 font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Maximize your on-chain presence
+              <h1 className="animate-rise-delay mt-4 font-[family-name:var(--font-display)] text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[var(--bone)] sm:text-5xl md:text-6xl lg:text-7xl">
+                Maximize your{" "}
+                <span className="text-brand">on-chain</span> presence
               </h1>
               <p className="animate-rise-late mx-auto mt-5 max-w-xl text-base text-[var(--mist)] md:text-lg">
                 Dollar-cost average with a clear cadence — connect your wallet,
                 set amount and frequency, arm a mock schedule.
               </p>
               <div className="animate-rise-later mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className="bg-brand rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110"
                 >
                   Get in touch
-                </a>
-                <a
-                  href="#features"
+                </Link>
+                <Link
+                  href="/services"
                   className="rounded-full border border-[var(--line)] bg-[var(--panel)]/80 px-6 py-3 text-sm text-[var(--bone)] transition hover:border-[var(--magenta)]"
                 >
-                  Explore features
-                </a>
+                  Explore services
+                </Link>
               </div>
             </div>
             <div className="w-full text-left">
@@ -184,7 +181,7 @@ export default function Home() {
                 <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand">
                   Features
                 </p>
-                <h2 className="font-[family-name:var(--font-display)] text-3xl tracking-tight text-[var(--bone)] md:text-5xl">
+                <h2 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-[-0.03em] text-[var(--bone)] md:text-5xl">
                   Built for steady{" "}
                   <span className="text-brand">Web3 habits</span>
                 </h2>
@@ -220,7 +217,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:items-start lg:gap-16">
             <Reveal ease="out">
               <div className="lg:sticky lg:top-28">
-                <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-[var(--bone)] md:text-4xl lg:text-[2.75rem] lg:leading-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-[-0.03em] text-[var(--bone)] md:text-4xl lg:text-[2.75rem] lg:leading-tight">
                   Unlocking Africa&apos;s{" "}
                   <span className="text-brand">Web3 Potential</span>
                 </h2>
@@ -272,7 +269,7 @@ export default function Home() {
           <Reveal ease="out">
             <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--panel)] px-8 py-12 shadow-[0_20px_50px_var(--surface-shadow)] md:flex-row md:items-center md:px-12">
               <div className="max-w-xl">
-                <h2 className="text-brand font-[family-name:var(--font-display)] text-3xl tracking-tight md:text-4xl">
+                <h2 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-[-0.03em] text-[var(--bone)] md:text-4xl">
                   Ready to grow with us?
                 </h2>
                 <p className="mt-4 text-[var(--mist)]">
@@ -280,12 +277,12 @@ export default function Home() {
                   market entry across the continent.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="#solutions"
+                  <Link
+                    href="/services"
                     className="bg-brand rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110"
                   >
                     View solutions
-                  </a>
+                  </Link>
                   <ConnectButton />
                 </div>
               </div>
@@ -296,10 +293,6 @@ export default function Home() {
             </div>
           </Reveal>
         </section>
-        </main>
-      </div>
-
-      <SiteFooter />
-    </div>
+    </PageShell>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { Reveal } from "@/components/Reveal";
+import Link from "next/link";
 
 const PLANS = [
   {
@@ -12,8 +15,9 @@ const PLANS = [
       "Basic educational content",
     ],
     cta: "Start Your Growth Journey",
-    href: "#contact",
+    href: "/contact",
     featured: false,
+    tone: "cyan",
   },
   {
     id: "accelerator",
@@ -27,17 +31,16 @@ const PLANS = [
       "Custom educational campaigns",
     ],
     cta: "Accelerate Your Growth",
-    href: "#contact",
+    href: "/contact",
     featured: true,
+    tone: "sunset",
   },
 ] as const;
 
-function CheckIcon({ featured }: { featured: boolean }) {
+function CheckIcon() {
   return (
     <span
-      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${
-        featured ? "bg-white/25" : "bg-white/15"
-      }`}
+      className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-white/25"
       aria-hidden
     >
       <svg
@@ -61,7 +64,7 @@ export function MarketingSolutions() {
       <div className="mx-auto max-w-5xl">
         <Reveal ease="out">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-[var(--bone)] md:text-4xl lg:text-[2.75rem]">
+            <h2 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-[-0.03em] text-[var(--bone)] md:text-4xl lg:text-[2.75rem]">
               Tailored Web3 Marketing Solutions
             </h2>
             <p className="mt-4 text-sm text-[var(--mist)] md:text-base">
@@ -83,48 +86,40 @@ export function MarketingSolutions() {
               }`}
             >
               <article
-                className={`flex h-full flex-col rounded-[1.25rem] p-7 shadow-[0_20px_50px_var(--surface-shadow)] md:rounded-2xl md:p-8 ${
-                  plan.featured
-                    ? "bg-gradient-to-br from-[var(--orange)] via-[#ff9a2e] to-[var(--gold)] text-white md:min-h-[28rem]"
-                    : "bg-[#1a2230] text-white md:min-h-[25rem]"
+                className={`solution-card solution-card--${plan.tone} group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] p-7 text-white shadow-[0_20px_50px_var(--surface-shadow)] md:rounded-2xl md:p-8 ${
+                  plan.featured ? "md:min-h-[28rem]" : "md:min-h-[25rem]"
                 }`}
               >
+                <div className="solution-card-sheen pointer-events-none absolute inset-0" aria-hidden />
+
                 {plan.featured && (
-                  <span className="absolute right-5 top-5 rounded-full bg-white/20 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                  <span className="absolute right-5 top-5 z-10 rounded-full bg-white/20 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                     Most Popular
                   </span>
                 )}
 
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-bold md:text-2xl">
+                <h3 className="relative z-10 font-[family-name:var(--font-display)] text-xl font-extrabold tracking-[-0.02em] md:text-2xl">
                   {plan.title}
                 </h3>
-                <p
-                  className={`mt-2 text-sm ${
-                    plan.featured ? "text-white/85" : "text-white/65"
-                  }`}
-                >
+                <p className="relative z-10 mt-2 text-sm text-white/85">
                   {plan.blurb}
                 </p>
 
-                <ul className="mt-7 flex-1 space-y-3.5">
+                <ul className="relative z-10 mt-7 flex-1 space-y-3.5">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm">
-                      <CheckIcon featured={plan.featured} />
+                      <CheckIcon />
                       <span className="leading-snug text-white/95">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <a
+                <Link
                   href={plan.href}
-                  className={`mt-8 block rounded-xl px-5 py-3.5 text-center text-sm font-semibold transition hover:brightness-110 ${
-                    plan.featured
-                      ? "bg-white/25 text-white backdrop-blur-sm hover:bg-white/35"
-                      : "bg-white/15 text-white hover:bg-white/25"
-                  }`}
+                  className="relative z-10 mt-8 block rounded-xl bg-white/20 px-5 py-3.5 text-center text-sm font-semibold text-white backdrop-blur-sm transition duration-300 group-hover:bg-white/30 group-hover:brightness-110"
                 >
                   {plan.cta}
-                </a>
+                </Link>
               </article>
             </Reveal>
           ))}
@@ -135,12 +130,12 @@ export function MarketingSolutions() {
             <p className="text-sm font-medium text-[var(--bone)]">
               Enterprise Solutions?
             </p>
-            <a
-              href="#contact"
-              className="rounded-xl bg-[#1a2230] px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-125"
+            <Link
+              href="/contact"
+              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold transition hover:brightness-110"
             >
               Get a Custom Proposal
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>
