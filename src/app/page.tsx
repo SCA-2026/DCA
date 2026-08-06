@@ -118,9 +118,10 @@ const FEATURES = [
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
-      <SiteHeader />
+      <div className="site-sheet relative z-10 flex flex-1 flex-col bg-[var(--ink)]">
+        <SiteHeader />
 
-      <main className="flex flex-1 flex-col">
+        <main className="flex flex-1 flex-col">
         <section className="hero-stage flow-haze relative flex min-h-dvh flex-col overflow-hidden px-6 pb-10 pt-28 md:px-10 md:pb-14">
           <ParallaxLayer speed={0.12} className="absolute inset-0">
             <div className="ken-burns" />
@@ -295,7 +296,8 @@ export default function Home() {
             </div>
           </Reveal>
         </section>
-      </main>
+        </main>
+      </div>
 
       <SiteFooter />
     </div>
