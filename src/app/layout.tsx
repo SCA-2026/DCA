@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+  Manrope,
+  Space_Grotesk,
+  JetBrains_Mono,
+  Syne,
+} from "next/font/google";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 
@@ -20,10 +25,16 @@ const mono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const particle = Syne({
+  variable: "--font-particle",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+});
+
 export const metadata: Metadata = {
-  title: "DCA — Steady buys on-chain",
+  title: "Decentrix Africa — Steady buys on-chain",
   description:
-    "A small web3 mock for dollar-cost averaging. Connect a wallet and arm a demo schedule.",
+    "Decentrix Africa web3 experience for dollar-cost averaging. Connect a wallet and arm a demo schedule.",
 };
 
 export default function RootLayout({
@@ -34,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable} ${particle.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

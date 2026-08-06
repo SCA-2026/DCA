@@ -1,15 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #07140f;
-  --panel: #0c1c16;
-  --line: #1e3a2f;
-  --bone: #e8f0ea;
-  --mist: #9bb5a8;
-  --fog: #6d8a7c;
-  --jade: #3dd68c;
-  --jade-bright: #5ee9a4;
-  --warn: #e8a05c;
+  /* Decentrix Africa logo colors — no green */
+  --cyan: #00d4ff;
+  --purple: #a855f7;
+  --magenta: #ff2d95;
+  --orange: #ff7a1a;
+  --gold: #ffcc00;
+
+  /* Light mode (default) */
+  --ink: #f7f4fc;
+  --panel: #ffffff;
+  --line: #e5dcf3;
+  --bone: #160c28;
+  --mist: #5a5070;
+  --fog: #7d7494;
+  --warn: #d97706;
+  --surface-shadow: rgba(22, 12, 40, 0.08);
+
+  --jade: var(--magenta);
+  --jade-bright: #ff6bb5;
+
+  --brand-gradient: linear-gradient(
+    115deg,
+    var(--cyan) 0%,
+    var(--purple) 28%,
+    var(--magenta) 52%,
+    var(--orange) 78%,
+    var(--gold) 100%
+  );
+
+  --hero-base: #f3eefc;
+  --hero-mid: #ebe3f8;
+  --hero-deep: #f7f4fc;
+  --hero-veil: rgba(247, 244, 252, 0.92);
+  --particle-field: rgba(255, 45, 149, 0.08);
+  --particle-field-b: rgba(168, 85, 247, 0.06);
+  --particle-fade: rgba(247, 244, 252, 0);
+
   --background: var(--ink);
   --foreground: var(--bone);
 }
@@ -21,6 +49,24 @@
   --font-mono: var(--font-mono);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ken-burns,
+  .marquee-track,
+  .orb-drift,
+  .hero-book,
+  .brand-gradient-shift {
+    animation: none !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -29,28 +75,127 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), system-ui, sans-serif;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
-/* Soft mesh atmosphere — not a flat fill */
-.hero-mesh {
+.text-brand {
+  background-image: var(--brand-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brand-gradient-shift 10s ease-in-out infinite alternate;
+}
+
+.bg-brand {
+  background-image: var(--brand-gradient);
+  background-size: 180% 180%;
+  animation: brand-gradient-shift 10s ease-in-out infinite alternate;
+  color: #0a0612;
+}
+
+.border-brand {
+  border-image: var(--brand-gradient) 1;
+}
+
+@keyframes brand-gradient-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-stage {
+  background: var(--hero-base);
+}
+
+.ken-burns {
+  position: absolute;
+  inset: -8%;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(61, 214, 140, 0.14), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(30, 80, 60, 0.35), transparent 50%),
-    linear-gradient(165deg, #07140f 0%, #0a1a14 45%, #061210 100%);
+    radial-gradient(ellipse 55% 45% at 72% 38%, rgba(255, 45, 149, 0.18), transparent 58%),
+    radial-gradient(ellipse 40% 35% at 18% 70%, rgba(0, 212, 255, 0.14), transparent 55%),
+    radial-gradient(ellipse 35% 30% at 50% 20%, rgba(168, 85, 247, 0.16), transparent 50%),
+    linear-gradient(145deg, var(--hero-base) 0%, var(--hero-mid) 42%, var(--hero-deep) 100%);
+  animation: ken-burns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.ken-burns-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--hero-veil) 0%, transparent 42%, color-mix(in srgb, var(--hero-base) 55%, transparent) 100%),
+    linear-gradient(90deg, color-mix(in srgb, var(--hero-base) 75%, transparent) 0%, transparent 55%);
 }
 
 .grid-fade {
   background-image:
-    linear-gradient(rgba(61, 214, 140, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(61, 214, 140, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+    linear-gradient(rgba(255, 45, 149, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black 10%, transparent 80%);
+  animation: grid-drift 32s linear infinite;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.orb-a {
+  width: min(42vw, 360px);
+  height: min(42vw, 360px);
+  background: radial-gradient(circle, rgba(255, 45, 149, 0.28), transparent 68%);
+  animation: orb-drift 14s ease-in-out infinite alternate;
+}
+
+.orb-b {
+  width: min(28vw, 220px);
+  height: min(28vw, 220px);
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent 70%);
+  animation: orb-drift 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.12) translate(-2.5%, 1.5%);
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate(12%, -10%) scale(1.18);
+    opacity: 1;
+  }
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(36px);
   }
   to {
     opacity: 1;
@@ -58,28 +203,202 @@ body {
   }
 }
 
-@keyframes pulse-line {
+@keyframes book-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float-soft {
   0%,
   100% {
-    opacity: 0.35;
+    transform: translateY(0);
   }
   50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.25);
     opacity: 1;
   }
 }
 
 .animate-rise {
-  animation: rise 0.8s ease-out both;
+  animation: rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-rise-delay {
-  animation: rise 0.8s ease-out 0.15s both;
+  animation: rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
 }
 
 .animate-rise-late {
-  animation: rise 0.8s ease-out 0.3s both;
+  animation: rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
 }
 
-.pulse-line {
-  animation: pulse-line 3s ease-in-out infinite;
+.animate-rise-later {
+  animation: book-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+.hero-book {
+  animation:
+    book-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both,
+    float-soft 6s ease-in-out 1.8s infinite;
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.network-ring {
+  animation: ring-spin 40s linear infinite;
+}
+
+.network-node {
+  animation: node-pulse 3.2s ease-in-out infinite;
+}
+
+.network-node:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+.network-node:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+.network-node:nth-child(4) {
+  animation-delay: 2.1s;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.85s var(--reveal-ease, cubic-bezier(0.16, 1, 0.3, 1)),
+    transform 0.85s var(--reveal-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.reveal-ease-out {
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(36px) scale(1.04);
+}
+
+.reveal-ease-in {
+  --reveal-ease: cubic-bezier(0.55, 0.05, 0.8, 0.2);
+  transform: translateY(36px) scale(0.94);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.12s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.24s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.36s;
+}
+
+.media-zoom {
+  overflow: hidden;
+}
+
+.media-zoom-inner {
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible .media-zoom-inner {
+  transform: scale(1);
+}
+
+.flow-band {
+  position: relative;
+  padding-inline: 1.5rem;
+  padding-block: clamp(4rem, 10vw, 7.5rem);
+}
+
+@media (min-width: 768px) {
+  .flow-band {
+    padding-inline: 2.5rem;
+  }
+}
+
+.flow-band::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 45, 149, 0.35),
+    rgba(0, 212, 255, 0.25),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.flow-haze {
+  position: relative;
+}
+
+.flow-haze::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--ink));
+  z-index: 2;
+}
+
+.scroll-bleed {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
 }

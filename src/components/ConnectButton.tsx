@@ -21,7 +21,7 @@ export function ConnectButton() {
         <button
           type="button"
           onClick={() => disconnect()}
-          className="rounded-sm border border-[var(--line)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--fog)] transition hover:border-[var(--jade)] hover:text-[var(--jade)]"
+          className="rounded-full border border-[var(--line)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--fog)] transition hover:border-[var(--magenta)] hover:text-[var(--magenta)]"
         >
           Disconnect
         </button>
@@ -37,7 +37,7 @@ export function ConnectButton() {
         type="button"
         disabled={!connector || isPending || status === "connecting"}
         onClick={() => connector && connect({ connector })}
-        className="rounded-sm bg-[var(--jade)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] transition hover:bg-[var(--jade-bright)] disabled:cursor-not-allowed disabled:opacity-50"
+        className="bg-brand rounded-full px-5 py-2.5 text-sm font-semibold transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isPending || status === "connecting" ? "Connecting…" : "Connect wallet"}
       </button>

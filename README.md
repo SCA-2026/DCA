@@ -1,6 +1,6 @@
-# DCA
+# Decentrix Africa
 
-Small Next.js web3 mock for dollar-cost averaging.
+Next.js web3 mock for dollar-cost averaging — brand experience for Decentrix Africa.
 
 ## Stack
 
@@ -23,4 +23,4 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Connect an injected wallet (e.g. MetaMask) to arm a demo DCA schedule — no real on-chain spend.
+Open [http://localhost:3000](http://localhost:3000). Connect an injected wallet (e.g. MetaMask) to arm a demo schedule — no real on-chain spend.
