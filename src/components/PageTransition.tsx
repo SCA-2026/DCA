@@ -48,8 +48,8 @@ function isInternalNav(href: string, currentPath: string) {
 export function PageTransition() {
   const pathname = usePathname();
   const [phase, setPhase] = useState<Phase>("enter");
-  const [headline, setHeadline] = useState(FIRST_VISIT.title);
-  const [tagline, setTagline] = useState(FIRST_VISIT.tagline);
+  const [headline, setHeadline] = useState<string>(FIRST_VISIT.title);
+  const [tagline, setTagline] = useState<string>(FIRST_VISIT.tagline);
   const prevPath = useRef<string | null>(null);
   const isFirstVisit = useRef(true);
   const timers = useRef<number[]>([]);
