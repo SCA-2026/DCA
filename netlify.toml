@@ -1,0 +1,9 @@
+# Netlify build config — overrides dashboard settings when present.
+# Changing UI alone does not redeploy; a new commit/trigger is required.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
