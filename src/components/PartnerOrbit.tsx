@@ -106,7 +106,6 @@ export function PartnerOrbit() {
   const stageRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const ringRef = useRef<HTMLDivElement>(null);
-  const progressLabelRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -152,11 +151,6 @@ export function PartnerOrbit() {
         el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${tilt}deg)`;
         el.style.opacity = `${0.55 + form * 0.45}`;
       });
-
-      if (progressLabelRef.current) {
-        progressLabelRef.current.textContent =
-          form < 0.98 ? "Scroll — logos enter orbit" : "In orbit · keep scrolling";
-      }
     };
 
     const onScroll = () => {
@@ -185,7 +179,7 @@ export function PartnerOrbit() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--purple)_12%,transparent),transparent_60%)]" />
 
         <div className="relative z-10 mb-8 max-w-2xl text-center md:mb-10">
-          <h2 className="text-brand font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-[-0.03em] text-[var(--bone)] md:text-4xl">
             Trusted by Web3 Innovators
           </h2>
           <p className="mt-3 text-sm text-[var(--mist)] md:text-base">
@@ -223,13 +217,6 @@ export function PartnerOrbit() {
             </div>
           ))}
         </div>
-
-        <p
-          ref={progressLabelRef}
-          className="relative z-10 mt-10 font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--fog)]"
-        >
-          Scroll — logos enter orbit
-        </p>
       </div>
     </section>
   );

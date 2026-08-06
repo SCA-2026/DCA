@@ -279,20 +279,6 @@ export function GlassParticleScroll({ children }: { children: ReactNode }) {
         ctx.restore();
       }
 
-      ctx.save();
-      ctx.globalAlpha = 0.3 + form * 0.4;
-      ctx.fillStyle = "#7d7494";
-      ctx.font = '500 10px "JetBrains Mono", monospace';
-      ctx.textAlign = "center";
-      ctx.fillText(
-        form < 0.98
-          ? `${Math.round(form * 100)}% assembled`
-          : "logo formed · keep scrolling",
-        w * 0.5,
-        h * 0.92,
-      );
-      ctx.restore();
-
       raf = requestAnimationFrame(tick);
     };
 
@@ -327,9 +313,6 @@ export function GlassParticleScroll({ children }: { children: ReactNode }) {
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--magenta)_18%,transparent),var(--ink)_72%)]" />
         <canvas ref={canvasRef} className="relative z-[1] h-full w-full" />
-        <p className="pointer-events-none absolute bottom-8 left-1/2 z-[2] -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.28em] text-[var(--fog)]">
-          Scroll — particles form the logo
-        </p>
       </div>
 
       <div className="relative z-10 -mt-[100dvh]">

@@ -53,7 +53,7 @@ export function HeroBookingBar() {
         <div className="flex items-center justify-center gap-3 px-5 py-4">
           {isConnected ? (
             <a
-              href="#contact"
+              href="/contact"
               className="bg-brand whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110"
             >
               Get in touch

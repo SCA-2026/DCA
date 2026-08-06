@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import {
   Manrope,
-  Space_Grotesk,
+  Bricolage_Grotesque,
   JetBrains_Mono,
   Syne,
 } from "next/font/google";
+import { BackToTop } from "@/components/BackToTop";
+import { PageTransition } from "@/components/PageTransition";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const body = Manrope({
@@ -48,7 +50,11 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable} ${particle.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <PageTransition />
+          {children}
+          <BackToTop />
+        </Providers>
       </body>
     </html>
   );
